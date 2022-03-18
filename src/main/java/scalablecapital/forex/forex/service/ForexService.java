@@ -22,8 +22,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
+import org.xml.sax.SAXException; 
 import scalablecapital.forex.forex.dto.GetForexRequest;
 import scalablecapital.forex.forex.dto.GetForexResponse;
 
