@@ -5,9 +5,11 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -22,9 +24,12 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException; 
+import org.xml.sax.SAXException;
+
+import scalablecapital.forex.forex.ForexBo;
 import scalablecapital.forex.forex.dto.GetForexRequest;
 import scalablecapital.forex.forex.dto.GetForexResponse;
+import scalablecapital.forex.forex.dto.GetTotalResponse;
 
 /**
  * 
@@ -142,6 +147,23 @@ public class ForexService {
 		} else {
 			forexRequest.put(to + "-" + from, 1);
 		}
+	}
+
+	public GetTotalResponse getTotal() {
+		GetTotalResponse response = new GetTotalResponse();
+		response.setStatusCode(200);
+		response.setStatus("Success");
+		List<ForexBo> forex = new ArrayList<ForexBo>();
+		if(forexRequest!=null) {
+			forexRequest.forEach((k, v) -> {
+				forex.add(new ForexBo(k, v));
+			});
+
+			response.setForex(forex);
+		
+		}
+			return response;
+
 	}
 
 }

@@ -24,6 +24,10 @@ public class ApplicationRestProcess extends RouteBuilder {
 		rest().post("/getforexDetails").consumes(MediaType.APPLICATION_JSON_VALUE).type(GetForexRequest.class).outType(GetForexResponse.class)
 				.route().process(processor).endRest();
 
+		rest().get("/getTotalRequests").consumes(MediaType.APPLICATION_JSON_VALUE).outType(GetForexResponse.class)
+		.route().process(processor).endRest();
+
 	}
+	
 
 }

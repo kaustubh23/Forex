@@ -2,19 +2,24 @@ package scalablecapital.forex.forex;
 
 public class ForexBo {
 	
-	private String currency;
-	private String rate;
-	public String getCurrency() {
-		return currency;
+	public ForexBo(String forextCombination, int totalNumbers) {
+		super();
+		this.forextCombination = forextCombination;
+		this.totalNumbers = totalNumbers;
 	}
-	public void setCurrency(String currency) {
-		this.currency = currency;
+	private String forextCombination;
+	public int getTotalNumbers() {
+		return totalNumbers;
 	}
-	public String getRate() {
-		return rate;
+	public void setTotalNumbers(int totalNumbers) {
+		this.totalNumbers = totalNumbers;
 	}
-	public void setRate(String rate) {
-		this.rate = rate;
+	public String getForextCombination() {
+		return forextCombination;
 	}
-
+	public void setForextCombination(String forextCombination) {
+		this.forextCombination = forextCombination;
+	}
+	private int totalNumbers;
+	 
 }

@@ -26,21 +26,31 @@ public class ForexProcessor implements Processor {
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		// TODO Auto-generated method stub
+		if("servlet:/getforexDetails?httpMethodRestrict=POST".equalsIgnoreCase( exchange.getFromEndpoint().toString()) ){
+			String data = exchange.getIn().getBody(String.class);
+			GsonBuilder builder = new GsonBuilder();
+			builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		String data = exchange.getIn().getBody(String.class);
-		GsonBuilder builder = new GsonBuilder();
-		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+			Gson gson = builder.create();
 
-		Gson gson = builder.create();
+			GetForexRequest request = gson.fromJson(data, GetForexRequest.class);
 
-		GetForexRequest request = gson.fromJson(data, GetForexRequest.class);
-
-		// GetTaxRequest request = objectMapper.readValue(data, GetTaxRequest.class);
-		ObjectMapper mapper = new ObjectMapper();
-		// Converting the Object to JSONString
-		String jsonString = mapper.writeValueAsString(service.getForect(request));
-		exchange.getOut().setBody(jsonString);
-
+			// GetTaxRequest request = objectMapper.readValue(data, GetTaxRequest.class);
+			ObjectMapper mapper = new ObjectMapper();
+			// Converting the Object to JSONString
+			String jsonString = mapper.writeValueAsString(service.getForect(request));
+			exchange.getOut().setBody(jsonString);
+	
+		}else {
+		
+			
+			ObjectMapper mapper = new ObjectMapper();
+			// Converting the Object to JSONString
+			String jsonString = mapper.writeValueAsString(service.getTotal( ));
+			exchange.getOut().setBody(jsonString);
+	
+		}
+		
 	}
 
 }  
